@@ -1,7 +1,7 @@
 import * as getProductRepository from "../../src/repositories/getProducts.repository";
 import { getRepository } from "typeorm";
 import { mocked } from "ts-jest/utils";
-import {generateProductsData} from "../utils/generateProducts";
+import {generateProductData, generateProductsData} from "../utils/generateProducts";
 
 
 jest.mock("typeorm", () => {
@@ -32,7 +32,7 @@ describe("getProductRepository", () => {
             mockedGetRepo.find.mockResolvedValue([]);
             const users = await getProductRepository.getProducts('',10,0);
             expect(users).toEqual([]);
-            expect(mockedGetRepo.find).toHaveBeenCalledWith();
+            expect(mockedGetRepo.find).toHaveBeenCalledWith({"skip": 0, "take": 10});
             expect(mockedGetRepo.find).toHaveBeenCalledTimes(1);
         });
 
@@ -41,8 +41,27 @@ describe("getProductRepository", () => {
             mockedGetRepo.find.mockResolvedValue(productsData);
             const products = await getProductRepository.getProducts('',10,0);
             expect(products).toEqual(productsData);
-            expect(mockedGetRepo.find).toHaveBeenCalledWith();
+            expect(mockedGetRepo.find).toHaveBeenCalledWith({"skip": 0, "take": 10});
             expect(mockedGetRepo.find).toHaveBeenCalledTimes(1);
         });
+
+        test("should return product list with the search from the database", async () => {
+            const name = "test";
+            const productsData = generateProductsData(1,{name});
+            mockedGetRepo.find.mockResolvedValue(productsData);
+            const products = await getProductRepository.getProducts(name,10,0);
+            expect(products).toEqual(productsData);
+            expect(mockedGetRepo.find).toHaveBeenCalledWith({"where": `name LIKE '%${name}%'`, "skip": 0, "take": 10});
+            expect(mockedGetRepo.find).toHaveBeenCalledTimes(1);
+        })
+
+        test("should return product list paginate", async () => {
+            const productsData = generateProductsData(15);
+            mockedGetRepo.find.mockResolvedValue(productsData);
+            const products = await getProductRepository.getProducts('',7,0);
+            expect(products.length).toEqual(7);
+            expect(mockedGetRepo.find).toHaveBeenCalledWith({"skip": 0, "take": 7});
+            expect(mockedGetRepo.find).toHaveBeenCalledTimes(1);
+        })
     });
 });

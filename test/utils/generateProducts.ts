@@ -8,7 +8,7 @@ export function generateProductData(overide = {}) {
         name: faker.commerce.productName(),
         description: faker.commerce.productDescription(),
         price: faker.datatype.number(),
-        tax_type: faker.random.arrayElement(Object.values(TaxType)),
+        tax_type: Number(faker.random.arrayElement(Object.values(TaxType))),
         createdAt: new Date(),
         updatedAt: new Date(),
         final_price: 0,
