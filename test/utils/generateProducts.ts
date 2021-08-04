@@ -1,6 +1,6 @@
 import faker from "faker";
 import {Product} from "../../src/models";
-import {TaxType} from "../../src/models/product";
+import {ProductPayload, TaxType} from "../../src/models/product";
 
 export function generateProductData(overide = {}) {
     let product: Product = {
@@ -33,11 +33,11 @@ export function generateProductsData(n: number = 1, overide = {}) {
     );
 }
 
-export function generateProductPayload() {
+export function generateProductPayload(): ProductPayload {
     return {
         name: faker.commerce.productName(),
         description: faker.commerce.productDescription(),
         price: faker.datatype.number(),
-        tax_type: faker.random.arrayElement(Object.values(TaxType))
+        tax_type: Number(faker.random.arrayElement(Object.values(TaxType)))
     }
 }

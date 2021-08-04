@@ -4,21 +4,7 @@ import { mocked } from "ts-jest/utils";
 import {generateProductData, generateProductsData} from "../utils/generateProducts";
 
 
-jest.mock("typeorm", () => {
-    return {
-        getRepository: jest.fn().mockReturnValue({
-            find: jest.fn(),
-        }),
-        PrimaryGeneratedColumn: jest.fn(),
-        Column: jest.fn(),
-        Entity: jest.fn(),
-        ManyToOne: jest.fn(),
-        OneToMany: jest.fn(),
-        JoinColumn: jest.fn(),
-        CreateDateColumn: jest.fn(),
-        UpdateDateColumn: jest.fn(),
-    };
-})
+jest.mock("typeorm");
 
 const mockedGetRepo = mocked(getRepository(<jest.Mock>{}));
 beforeEach(() => {
@@ -26,7 +12,7 @@ beforeEach(() => {
 });
 
 
-describe("getProductRepository", () => {
+describe("getProductsRepository", () => {
     describe("getProducts", () => {
         test("should return empty array", async () => {
             mockedGetRepo.find.mockResolvedValue([]);

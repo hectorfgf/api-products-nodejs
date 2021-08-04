@@ -49,5 +49,8 @@ export class Product {
     @UpdateDateColumn()
     updatedAt!: Date;
 
+    constructor(payload: ProductPayload) {
+        this.final_price = payload.price+((payload.price*payload.tax_type)/100);
+    }
 
 }
