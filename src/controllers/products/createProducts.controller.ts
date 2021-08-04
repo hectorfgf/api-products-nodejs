@@ -6,7 +6,7 @@ import {
 import {ProductPayload} from "../../models/product";
 
 
-@Route("getProducts")
+@Route("createProducts")
 @Tags("Product")
 export default class createProductsController {
 

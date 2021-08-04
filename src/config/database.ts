@@ -10,7 +10,7 @@ const config : ConnectionOptions = {
     database: process.env.MYSQL_DATABASE || "bd",
     entities: [Product],
     synchronize: true,
-    logging: false,
+    logging: false
 }
 
 export default config

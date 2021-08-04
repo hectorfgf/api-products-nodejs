@@ -50,7 +50,7 @@ export class Product {
     updatedAt!: Date;
 
     constructor(payload: ProductPayload) {
-        this.final_price = payload.price+((payload.price*payload.tax_type)/100);
+        this.final_price = Number((payload?.price+((payload?.price*payload?.tax_type)/100)).toFixed(0));
     }
 
 }
