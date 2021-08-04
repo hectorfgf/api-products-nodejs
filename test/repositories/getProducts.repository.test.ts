@@ -56,7 +56,7 @@ describe("getProductRepository", () => {
         })
 
         test("should return product list paginate", async () => {
-            const productsData = generateProductsData(15);
+            const productsData = generateProductsData(7);
             mockedGetRepo.find.mockResolvedValue(productsData);
             const products = await getProductRepository.getProducts('',7,0);
             expect(products.length).toEqual(7);
