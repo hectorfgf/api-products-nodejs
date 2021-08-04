@@ -1,0 +1,48 @@
+import {
+    Entity,
+    PrimaryGeneratedColumn,
+    Column,
+    CreateDateColumn,
+    UpdateDateColumn,
+} from "typeorm";
+
+export enum TaxType {
+    FOUR = 4,
+    TEN = 10,
+    TWENTY_ONE = 21
+}
+
+
+@Entity()
+export class Product {
+    @PrimaryGeneratedColumn()
+    id!: number;
+
+    @Column()
+    name!: string;
+
+    @Column()
+    description!: string;
+
+    @Column()
+    email!: string;
+
+    @Column()
+    price!: number;
+
+    @Column({
+        type: "enum",
+        enum: TaxType,
+        default: TaxType.TWENTY_ONE
+    })
+    tax_type!: TaxType;
+
+    @Column()
+    final_price!: number;
+
+    @CreateDateColumn()
+    createdAt!: Date;
+
+    @UpdateDateColumn()
+    updatedAt!: Date;
+}
