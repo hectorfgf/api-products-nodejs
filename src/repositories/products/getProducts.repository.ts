@@ -1,5 +1,5 @@
 import {getRepository} from "typeorm";
-import { Product } from "../models";
+import { Product } from "../../models";
 
 export const getProducts = async (search:string, take:number, skip:number): Promise<Array<Product>> => {
     const productRepository = getRepository(Product);

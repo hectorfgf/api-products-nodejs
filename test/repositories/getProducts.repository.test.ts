@@ -1,4 +1,4 @@
-import * as getProductRepository from "../../src/repositories/getProducts.repository";
+import * as getProductRepository from "../../src/repositories/products/getProducts.repository";
 import { getRepository } from "typeorm";
 import { mocked } from "ts-jest/utils";
 import {generateProductData, generateProductsData} from "../utils/generateProducts";
