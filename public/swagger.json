@@ -1,0 +1,61 @@
+{
+	"components": {
+		"examples": {},
+		"headers": {},
+		"parameters": {},
+		"requestBodies": {},
+		"responses": {},
+		"schemas": {
+			"HalthResponse": {
+				"properties": {
+					"message": {
+						"type": "string"
+					}
+				},
+				"required": [
+					"message"
+				],
+				"type": "object",
+				"additionalProperties": false
+			}
+		},
+		"securitySchemes": {}
+	},
+	"info": {
+		"title": "api-productos",
+		"version": "1.0.0",
+		"license": {
+			"name": "ISC"
+		},
+		"contact": {
+			"name": "Héctor Francisco González Feo"
+		}
+	},
+	"openapi": "3.0.0",
+	"paths": {
+		"/health": {
+			"get": {
+				"operationId": "GetMessage",
+				"responses": {
+					"200": {
+						"description": "Ok",
+						"content": {
+							"application/json": {
+								"schema": {
+									"$ref": "#/components/schemas/HalthResponse"
+								}
+							}
+						}
+					}
+				},
+				"security": [],
+				"parameters": []
+			}
+		}
+	},
+	"servers": [
+		{
+			"url": "/"
+		}
+	]
+}
