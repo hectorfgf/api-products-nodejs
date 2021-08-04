@@ -12,6 +12,12 @@ export enum TaxType {
     TWENTY_ONE = 21
 }
 
+export interface ProductPayload {
+    name: string;
+    description: string;
+    price: number;
+    tax_type: TaxType;
+}
 
 @Entity()
 export class Product {
@@ -23,9 +29,6 @@ export class Product {
 
     @Column()
     description!: string;
-
-    @Column()
-    email!: string;
 
     @Column()
     price!: number;
@@ -45,4 +48,6 @@ export class Product {
 
     @UpdateDateColumn()
     updatedAt!: Date;
+
+
 }
