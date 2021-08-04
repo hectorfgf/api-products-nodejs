@@ -1,4 +1,4 @@
-# api-productos-nodejs
+# api-products-nodejs
 
 Este proyecto es una pequeña API en Nodejs usando Express, para la creación y listado de productos (nombre, descripción, precio e IVA (4, 10, 21)). 
 
